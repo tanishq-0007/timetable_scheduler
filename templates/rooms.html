@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Add Room</h5>
+        <form method="post" action="{{ url_for('rooms') }}">
+          <div class="mb-2">
+            <input class="form-control" name="name" placeholder="Room Name (e.g., R-201)" required>
+          </div>
+          <div class="mb-2">
+            <input class="form-control" name="capacity" placeholder="Capacity" type="number" min="1" value="40" required>
+          </div>
+          <button class="btn btn-primary">Add Room</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5>Rooms</h5>
+        <ul class="list-group">
+          {% for r in rooms %}
+            <li class="list-group-item">{{ r.name }} — capacity {{ r.capacity }}</li>
+          {% else %}
+            <li class="list-group-item text-muted">No rooms yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
