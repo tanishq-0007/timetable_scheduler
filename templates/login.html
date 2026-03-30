@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login - Smart Class Scheduler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --color-white: #fff;
+            --color-light: #f1f5f9;
+            --color-black: #121212;
+            --color-blue: #1a73e8;
+            --color-gray: #80868b;
+            --color-grayish: #dadce0;
+            --shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        html {
+            font-size: 100%;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        *, *::before, *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: inherit;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--color-black);
+            background: var(--color-white);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 80rem;
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 2rem;
+            margin: 0 auto;
+        }
+        .text-large {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-black);
+        }
+        .text-links {
+            font-size: 1rem;
+            color: var(--color-blue);
+        }
+        .text-links:hover {
+            text-decoration: underline;
+        }
+        .main .wrapper {
+            max-width: 28rem;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-radius: 0.25rem;
+            background: var(--color-white);
+            box-shadow: var(--shadow-medium);
+        }
+        .form {
+            margin-top: 2rem;
+        }
+        .input-control {
+            margin-bottom: 1.25rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            border-radius: 2rem;
+            background: var(--color-light);
+            border: none;
+            outline: none;
+        }
+        .input-submit {
+            min-width: 40%;
+            padding: 0.65rem 1.25rem;
+            border-radius: 2rem;
+            color: var(--color-white);
+            background: var(--color-blue);
+            box-shadow: var(--shadow-medium);
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<main class="main">
+    <div class="container">
+        <section class="wrapper">
+            <div class="heading">
+                <h1 class="text text-large">Log In</h1>
+            </div>
+
+            <!-- Flask Login Form -->
+            <form method="post" action="{{ url_for('login') }}" class="form">
+                <div class="input-control">
+                    <input type="text" name="username" id="username"
+                           class="input-field" placeholder="Username" required>
+                </div>
+                <div class="input-control">
+                    <input type="password" name="password" id="password"
+                           class="input-field" placeholder="Password" required>
+                </div>
+                <div class="input-control" style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="#" class="text text-links">Forgot Password</a>
+                    <input type="submit" name="submit" class="input-submit" value="Log In">
+                </div>
+            </form>
+
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-gray);">
+                Default credentials: <b>admin / admin123</b>
+            </p>
+        </section>
+    </div>
+</main>
+</body>
+</html>
