@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h5>Weekly Timetable</h5>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Day / Slot</th>
+            {% for s in slots %}
+              <th>{{ s }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in days %}
+            <tr>
+              <th class="table-secondary">{{ d }}</th>
+              {% for s in slots %}
+                <td>
+                  {% if grid[d][s] %}
+                    <div><strong>{{ grid[d][s].subject }}</strong></div>
+                    <div class="small">👩‍🏫 {{ grid[d][s].teacher }}</div>
+                    <div class="small">🏫 {{ grid[d][s].room }}</div>
+                  {% else %}
+                    <div class="text-muted small">Free</div>
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">Back</a>
+  </div>
+</div>
+{% endblock %}
