@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-7">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Add Subject</h5>
+        <form method="post" action="{{ url_for('subjects') }}">
+          <div class="mb-2">
+            <input class="form-control" name="name" placeholder="Subject Name" required>
+          </div>
+          <div class="mb-2">
+            <input class="form-control" name="weekly_classes" placeholder="Weekly Classes (e.g., 3)" type="number" min="0" value="2" required>
+          </div>
+          <div class="mb-2">
+            <select class="form-select" name="teacher_id">
+              <option value="">-- Assign Teacher (optional) --</option>
+              {% for t in teachers %}
+                <option value="{{ t.id }}">{{ t.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button class="btn btn-primary">Add Subject</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5>Subjects</h5>
+        <table class="table table-sm">
+          <thead><tr><th>Name</th><th>Weekly</th><th>Teacher</th></tr></thead>
+          <tbody>
+            {% for s in subjects %}
+              <tr>
+                <td>{{ s.name }}</td>
+                <td>{{ s.weekly_classes }}</td>
+                <td>{% if s.teacher_id %}{{ (s.teacher_id and (s.teacher_id and (Teacher.query.get(s.teacher_id).name) ) ) or 'N/A' }}{% else %}N/A{% endif %}</td>
+              </tr>
+            {% else %}
+              <tr><td colspan="3">No subjects yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card p-3">
+      <h6>Notes</h6>
+      <p class="small">Assign teachers to subjects for better scheduling. Weekly classes drive the demand.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
