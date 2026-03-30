@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Add Teacher</h5>
+        <form method="post" action="{{ url_for('teachers') }}">
+          <div class="mb-2">
+            <input class="form-control" name="name" placeholder="Teacher Name" required>
+          </div>
+          <button class="btn btn-primary">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5>Teachers</h5>
+        <ul class="list-group">
+          {% for t in teachers %}
+            <li class="list-group-item">{{ t.name }}</li>
+          {% else %}
+            <li class="list-group-item text-muted">No teachers yet.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card p-3">
+      <h6>Quick Tips</h6>
+      <ul class="small">
+        <li>Add teachers before adding subjects.</li>
+        <li>You can seed data from the backend on first run.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
